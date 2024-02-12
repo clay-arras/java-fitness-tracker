@@ -33,6 +33,13 @@ The project is a basic query database where users can store workout information,
 - ~~Example Chest Exercise~~
 - ~~Example Arms Exercise~~
 
+### Handle input
+- Main function
+  - One function to choose options
+  - One function for each of the options
+- Some way to handle adding exercises
+- Some way to display exercises
+
 ### User stories
 
 As a user, I want to be able to view my history of workouts
