@@ -11,6 +11,7 @@ public class Tracker implements Metrics {
     private final ArrayList<Workout> listOfWorkout;
 
     /*
+    MODIFIES: this
     EFFECTS: constructs a new tracker
      */
     public Tracker() {

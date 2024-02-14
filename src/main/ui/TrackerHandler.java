@@ -6,7 +6,7 @@ import model.Workout;
 import java.util.Scanner;
 
 /*
-Handles tracker inputs and outputs
+Handles tracker inputs and outputs for the main program Tracker class
  */
 public class TrackerHandler {
     Tracker tracker;
@@ -14,6 +14,7 @@ public class TrackerHandler {
     Scanner scanner;
 
     /*
+    MODIFIES: this
     EFFECTS: Constructs a tracker handler
      */
     public TrackerHandler() {

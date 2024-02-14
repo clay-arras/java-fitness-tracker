@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+Tests for the Exercise class
+ */
 class ExerciseTest {
     Exercise exercise1;
     Exercise exercise2;
@@ -21,6 +24,13 @@ class ExerciseTest {
                 exercise1.getExerciseWeight() / (1 - (0.5 / 30) * (exercise1.getExerciseReps() - 1)));
         assertEquals(exercise2.calculate1RM(),
                 exercise2.getExerciseWeight() / (1 - (0.5 / 30) * (exercise2.getExerciseReps() - 1)));
+
+        exercise1.setExerciseName("Lat Pull-down");
+        exercise1.setExerciseReps(10);
+        exercise1.setExerciseSets(3);
+        exercise1.setExerciseWeight(100);
+        assertEquals(exercise1.calculate1RM(),
+                exercise1.getExerciseWeight() / (1 - (0.5 / 30) * (exercise1.getExerciseReps() - 1)));
     }
 
     @Test

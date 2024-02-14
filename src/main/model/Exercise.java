@@ -10,6 +10,7 @@ public class Exercise {
     private int exerciseWeight;
 
     /*
+    MODIFIES: this
     EFFECTS: constructs an exercise
      */
     public Exercise(String exerciseName, int exerciseReps, int exerciseSets, int exerciseWeight) {
@@ -20,6 +21,7 @@ public class Exercise {
     }
 
     /*
+    REQUIRES: exerciseWeight > 0 && exerciseReps > 0 && exerciseSets > 0
     EFFECTS: generates the 1RM
      */
     public double calculate1RM() {
@@ -27,6 +29,7 @@ public class Exercise {
     }
 
     /*
+    REQUIRES: exerciseWeight > 0 && exerciseReps > 0 && exerciseSets > 0
     EFFECTS: calculates the volume
      */
     public int calculateVolume() {

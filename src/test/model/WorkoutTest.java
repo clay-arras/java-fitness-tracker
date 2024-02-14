@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+Tester for the Workout class
+ */
 class WorkoutTest {
     Exercise exercise1;
     Exercise exercise2;

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+Tests for the Tracker class
+ */
 class TrackerTest {
     Exercise exercise1;
     Exercise exercise2;

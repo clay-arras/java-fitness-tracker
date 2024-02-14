@@ -8,21 +8,22 @@ import java.util.Scanner;
 import java.util.Set;
 
 /*
-Handles displaying and the inputs for the workouts
+Handles displaying and the inputs for the workouts. Makes the program more modular
  */
 public class WorkoutHandler {
     ExerciseHandler handler;
 
     /*
-    EFFECTS: Constructs a new handler
+    MODIFIES: this
+    EFFECTS: Constructs a new handler to use the Exercise display methods
      */
     public WorkoutHandler() {
         handler = new ExerciseHandler();
     }
 
     /*
-        EFFECTS: displays workout
-         */
+    EFFECTS: displays workout using handler methods
+     */
     public void displayWorkout(Workout w) {
         for (int i = 0; i < w.getNumExercise(); i++) {
             handler.displayExercise(w.getExercise(i));
@@ -31,7 +32,7 @@ public class WorkoutHandler {
     }
 
     /*
-    EFFECTS: gets a workout from inputs
+    EFFECTS: gets a workout from inputs by looping through the handler
      */
     public Workout inputWorkout() {
         Workout w = new Workout();

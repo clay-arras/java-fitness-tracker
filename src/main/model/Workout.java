@@ -11,6 +11,7 @@ public class Workout {
     private final ArrayList<Exercise> listOfExercise;
 
     /*
+    MODIFIES: this
     EFFECTS: constructs a new workout
      */
     public Workout() {
@@ -73,6 +74,7 @@ public class Workout {
     }
 
     /*
+    REQUIRES: listOfExercise.size() > 0
     EFFECTS: finds the maximum 1RM among all exercises with that exercise name
      */
     public double findMax1RM(String exerciseName) {

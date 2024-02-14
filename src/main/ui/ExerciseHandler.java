@@ -9,7 +9,14 @@ Handles displaying and the inputs for the workouts
  */
 public class ExerciseHandler {
     /*
-    EFFECTS: displays workout
+    EFFECTS: initializes an empty ExerciseHandler class
+     */
+    public ExerciseHandler() {
+
+    }
+
+    /*
+    EFFECTS: displays a single exercise
      */
     public void displayExercise(Exercise e) {
         System.out.println(e.getExerciseName());
@@ -19,7 +26,7 @@ public class ExerciseHandler {
     }
 
     /*
-    EFFECTS: gets a workout from inputs
+    EFFECTS: gets an exercise from inputs
      */
     public Exercise inputExercise() {
         Scanner scanner = new Scanner(System.in);
