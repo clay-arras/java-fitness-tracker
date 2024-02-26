@@ -51,3 +51,7 @@ As a user, I want to be able to delete workouts
 As a user, I want to be able to edit workouts
 
 As a user, I want to be able to calculate metrics
+
+As a user, I want to be able to save workout data (if I so choose)
+
+As a user, I want to be able to load previous workout data (if I so choose)
