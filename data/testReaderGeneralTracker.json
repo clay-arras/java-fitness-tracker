@@ -1,0 +1,22 @@
+{"listOfWorkout": [
+    {"listOfExercise": [
+        {
+            "exerciseName": "Bicep Curls",
+            "exerciseWeight": 30,
+            "exerciseSets": 4,
+            "exerciseReps": 11
+        },
+        {
+            "exerciseName": "Leg Extensions",
+            "exerciseWeight": 105,
+            "exerciseSets": 3,
+            "exerciseReps": 11
+        }
+    ]},
+    {"listOfExercise": [{
+        "exerciseName": "Bench Press",
+        "exerciseWeight": 120,
+        "exerciseSets": 4,
+        "exerciseReps": 10
+    }]}
+]}
