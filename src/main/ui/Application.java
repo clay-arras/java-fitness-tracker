@@ -27,31 +27,22 @@ public class Application {
     public void run() {
         do {
             char option = optionSelector();
-            switch (option) {
-                case 'a':
-                    handler.addWorkout();
-                    break;
-                case 'r':
-                    handler.removeWorkout();
-                    break;
-                case 'e':
-                    handler.editWorkout();
-                    break;
-                case 'v':
-                    handler.displayWorkouts();
-                    break;
-                case 'm':
-                    handler.viewMetrics();
-                    break;
-                case 's':
-                    handler.saveTracker();
-                    break;
-                case 'l':
-                    handler.loadTracker();
-                    break;
-                case 'q':
-                    isDone = true;
-                    break;
+            if (option == 'a') {
+                handler.addWorkout();
+            } else if (option == 'r') {
+                handler.removeWorkout();
+            } else if (option == 'e') {
+                handler.editWorkout();
+            } else if (option == 'v') {
+                handler.displayWorkouts();
+            } else if (option == 'm') {
+                handler.viewMetrics();
+            } else if (option == 's') {
+                handler.saveTracker();
+            } else if (option == 'l') {
+                handler.loadTracker();
+            } else if (option == 'q') {
+                isDone = true;
             }
         } while (!isDone);
     }

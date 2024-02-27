@@ -24,18 +24,11 @@
         <property name="eachLine" value="true"/>
     </module>-->
 
-    <module name="SuppressWarningsFilter" />
-
     <module name="LineLength">
         <property name="max" value="120"/>
         <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
     </module>
-
     <module name="TreeWalker">
-        <module name="SuppressWarningsHolder" />
-        <module name="SuppressWarnings">
-            <property name="format" value="(?!methodlength).*"/>
-        </module>
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
             <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
@@ -55,8 +48,6 @@
         </module>
         <module name="VisibilityModifier">
             <property name="allowPublicFinalFields" value="true"/>
-            <property name="protectedAllowed" value="true"/>
-            <property name="packageAllowed" value="true"/>
         </module>
         <module name="NeedBraces"/>
         <module name="LeftCurly"/>
@@ -82,8 +73,7 @@
         <module name="OneStatementPerLine"/>
         <module name="MultipleVariableDeclarations"/>
         <module name="ArrayTypeStyle"/>
-        <!--
-        <module name="MissingSwitchDefault"/>
+        <!--<module name="MissingSwitchDefault"/>
         <module name="FallThrough"/>-->
         <module name="UpperEll"/>
         <module name="ModifierOrder"/>
@@ -219,9 +209,12 @@
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="MethodLength">
-            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
-            <property name="max" value="25"/>
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="max" value="20"/>
             <property name="countEmpty" value="false"/>
+        </module>
+        <module name="IllegalImport">
+            <property name="illegalPkgs" value="com.sun" />
         </module>
     </module>
 </module>
