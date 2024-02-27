@@ -62,7 +62,7 @@ public class JsonReader {
 
     /*
     MODIFIES: w
-    EFFECTS: parses exercises from JSON object and adds them to w
+    EFFECTS: parses exercises from JSON object and adds them to tracker t
      */
     private void addWorkout(Tracker t, JSONObject jsonObject) {
         Workout w = new Workout();
@@ -76,7 +76,7 @@ public class JsonReader {
 
     /*
     MODIFIES: w
-    EFFECTS: parses an exercise from JSON object
+    EFFECTS: parses an exercise from JSON object and adds it to w
      */
     private void addExercise(Workout w, JSONObject jsonObject) {
         String exerciseName = jsonObject.getString("exerciseName");

@@ -8,6 +8,10 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+Tests for the JSONReader class
+Citation: All tests were adapted from Felix code
+ */
 class JsonReaderTest extends JsonTest {
 
     @Test
