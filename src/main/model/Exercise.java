@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /*
 Represents one exercise, where we can calculate certain metrics through functions
  */
-public class Exercise {
+public class Exercise implements Writable {
     private String exerciseName;
     private int exerciseReps;
     private int exerciseSets;
@@ -34,6 +37,19 @@ public class Exercise {
      */
     public int calculateVolume() {
         return exerciseReps * exerciseSets * exerciseWeight;
+    }
+
+    /*
+    EFFECTS: returns a JSON object
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("exerciseName", exerciseName);
+        json.put("exerciseReps", exerciseReps);
+        json.put("exerciseSets", exerciseSets);
+        json.put("exerciseWeight", exerciseWeight);
+        return json;
     }
 
     public String getExerciseName() {

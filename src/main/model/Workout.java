@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 import static java.lang.Math.max;
@@ -7,7 +11,7 @@ import static java.lang.Math.max;
 /*
 This method represents a single workout, which logs some arbitrary number of exercises
  */
-public class Workout {
+public class Workout implements Writable {
     private final ArrayList<Exercise> listOfExercise;
 
     /*
@@ -85,6 +89,29 @@ public class Workout {
             }
         }
         return max1RM;
+    }
+
+    /*
+    EFFECTS: returns a JSON object
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("listOfExercise", exercisesToJson());
+        return json;
+    }
+
+    /*
+    EFFECTS: converts exercises to Json
+     */
+    public JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Exercise e : listOfExercise) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
     }
 
     /*

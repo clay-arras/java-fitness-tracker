@@ -2,7 +2,11 @@ package ui;
 
 import model.Tracker;
 import model.Workout;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -12,6 +16,9 @@ public class TrackerHandler {
     Tracker tracker;
     WorkoutHandler handler;
     Scanner scanner;
+    private static final String JSON_STORE = "./data/testReaderGeneralTracker.json";
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
     /*
     MODIFIES: this
@@ -21,6 +28,8 @@ public class TrackerHandler {
         tracker = new Tracker();
         handler = new WorkoutHandler();
         scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     /*
@@ -71,5 +80,27 @@ public class TrackerHandler {
 
         System.out.println("Maximum volume: " + maxVol);
         System.out.println("Maximum 1RM: " + max1RM);
+    }
+
+    protected void saveTracker() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(tracker);
+            jsonWriter.close();
+            System.out.println("Saved file to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    protected void loadTracker() {
+        try {
+            tracker = jsonReader.read();
+            System.out.println("Loaded file from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 import static java.lang.Math.max;
@@ -7,7 +11,7 @@ import static java.lang.Math.max;
 /*
 A basic tracker for multiple workouts, that can also find certain relevant metrics
  */
-public class Tracker implements Metrics {
+public class Tracker implements Metrics, Writable {
     private final ArrayList<Workout> listOfWorkout;
 
     /*
@@ -79,5 +83,28 @@ public class Tracker implements Metrics {
             max1RM = max(max1RM, workout.findMax1RM(exerciseName));
         }
         return max1RM;
+    }
+
+    /*
+    EFFECTS: returns a JSON object
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("listOfWorkout", workoutsToJson());
+        return json;
+    }
+
+    /*
+    EFFECTS: converts exercises to Json
+     */
+    public JSONArray workoutsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Workout w : listOfWorkout) {
+            jsonArray.put(w.toJson());
+        }
+
+        return jsonArray;
     }
 }

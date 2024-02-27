@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+
 /*
 Main hub for the application, which runs the main process loop
  */
@@ -42,6 +43,12 @@ public class Application {
                 case 'm':
                     handler.viewMetrics();
                     break;
+                case 's':
+                    handler.saveTracker();
+                    break;
+                case 'l':
+                    handler.loadTracker();
+                    break;
                 case 'q':
                     isDone = true;
                     break;
@@ -54,7 +61,7 @@ public class Application {
      */
     public char optionSelector() {
         char option = '\u0000';
-        Set<Character> validOptions = new HashSet<>(Arrays.asList('a', 'r', 'e', 'v', 'm', 'q'));
+        Set<Character> validOptions = new HashSet<>(Arrays.asList('a', 'r', 'e', 'v', 'm', 's', 'l', 'q'));
         Scanner scanner = new Scanner(System.in);
 
         String userPrompt = "Options:\n"
@@ -63,6 +70,8 @@ public class Application {
                 + "e) edit a previous workout\n"
                 + "v) view all previous workouts\n"
                 + "m) view metrics\n"
+                + "s) save workouts\n"
+                + "l) load workouts\n"
                 + "q) quit\n";
 
         System.out.println();
