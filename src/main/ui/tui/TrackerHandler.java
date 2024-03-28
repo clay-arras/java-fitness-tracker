@@ -1,4 +1,4 @@
-package ui;
+package ui.tui;
 
 import model.Tracker;
 import model.Workout;
@@ -16,7 +16,7 @@ public class TrackerHandler {
     Tracker tracker;
     WorkoutHandler handler;
     Scanner scanner;
-    private static final String JSON_STORE = "./data/testReaderGeneralTracker.json";
+    private static final String JSON_STORE = "./data/userData.json";
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 

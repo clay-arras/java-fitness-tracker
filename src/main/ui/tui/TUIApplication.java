@@ -1,4 +1,4 @@
-package ui;
+package ui.tui;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,14 +9,14 @@ import java.util.Set;
 /*
 Main hub for the application, which runs the main process loop
  */
-public class Application {
+public class TUIApplication {
     private boolean isDone;
     private final TrackerHandler handler;
 
     /*
     EFFECTS: initializes the application
      */
-    public Application() {
+    public TUIApplication() {
         isDone = false;
         handler = new TrackerHandler();
     }
