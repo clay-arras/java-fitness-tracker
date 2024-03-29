@@ -26,6 +26,12 @@ public class GUIApplication extends JFrame {
     private JsonReader jsonReader;
     JComponent currentScreen;
 
+    MenuScreen menuScreen;
+    AddWorkoutScreen addWorkoutScreen;
+    RemoveWorkoutScreen removeWorkoutScreen;
+    ViewWorkoutScreen viewWorkoutScreen;
+    EditWorkoutScreen editWorkoutScreen;
+
     /*
     MODIFIES: this
     EFFECTS: main runner for the application
@@ -36,9 +42,39 @@ public class GUIApplication extends JFrame {
         jsonReader = new JsonReader(JSON_STORE);
         frame = new JFrame();
 
-        JButton saveWorkoutButton = new JButton("Save workouts");
-        JButton loadWorkoutButton = new JButton("Load workouts");
+        JButton saveWorkoutButton = initializeSaveWorkoutButton();
+        JButton loadWorkoutButton = initializeLoadWorkoutButton();
+        JButton viewWorkoutButton = initializeViewWorkoutButton();
 
+        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton);
+        viewWorkoutScreen = new ViewWorkoutScreen(tracker);
+
+        frame.add(menuScreen.getPanel());
+        currentScreen = menuScreen.getPanel();
+
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.setLayout(new FlowLayout());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setResizable(false);
+    }
+
+    private JButton initializeBackButton() {
+        JButton backButton = new JButton("GO BACK");
+        backButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println("Back button pressed");
+                frame.remove(currentScreen);
+                frame.add(menuScreen.getPanel());
+            }
+        });
+        return backButton;
+    }
+
+    private JButton initializeSaveWorkoutButton() {
+        JButton saveWorkoutButton = new JButton("Save workouts");
         saveWorkoutButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 try {
@@ -51,6 +87,11 @@ public class GUIApplication extends JFrame {
                 }
             }
         });
+        return saveWorkoutButton;
+    }
+
+    private JButton initializeLoadWorkoutButton() {
+        JButton loadWorkoutButton = new JButton("Load workouts");
         loadWorkoutButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 try {
@@ -61,35 +102,19 @@ public class GUIApplication extends JFrame {
                 }
             }
         });
+        return loadWorkoutButton;
+    }
 
-
-        MenuScreen menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton);
-        frame.add(menuScreen.getPanel());
-        currentScreen = menuScreen.getPanel();
-
-//        ViewWorkoutScreen viewWorkoutScreen = new ViewWorkoutScreen();
-
-        JButton backButton = new JButton("GO BACK");
-        backButton.addActionListener(new ActionListener(){
+    private JButton initializeViewWorkoutButton() {
+        JButton viewWorkoutButton = new JButton("View workouts");
+        viewWorkoutButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                System.out.println("Changing to view workout screen");
                 frame.remove(currentScreen);
-                frame.add(menuScreen.getPanel());
+                frame.add(viewWorkoutScreen.getPanel());
+                currentScreen = viewWorkoutScreen.getPanel();
             }
         });
-//        JButton viewWorkoutButton = new JButton("View workouts");
-//        viewWorkoutButton.addActionListener(new ActionListener(){
-//            public void actionPerformed(ActionEvent e){
-//                frame.remove(currentScreen);
-//                frame.add(viewWorkoutScreen.getPanel());
-//            }
-//        });
-
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        frame.setLayout(new FlowLayout());
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
+        return viewWorkoutButton;
     }
 }
