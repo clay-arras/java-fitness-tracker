@@ -1,7 +1,6 @@
 package ui.gui;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /*
@@ -19,8 +18,8 @@ public class GUIApplication extends JFrame {
     public GUIApplication() {
         frame = new JFrame();
 
-        MenuComponent menuComponent = new MenuComponent();
-        frame.add(menuComponent.getPanel());
+        MenuScreen menuScreen = new MenuScreen();
+        frame.add(menuScreen.getPanel());
 
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
