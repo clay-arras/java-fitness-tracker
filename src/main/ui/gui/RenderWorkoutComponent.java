@@ -10,12 +10,15 @@ public class RenderWorkoutComponent extends JPanel {
 
     public RenderWorkoutComponent(Workout w) {
         panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         for (int exerciseIndex = 0; exerciseIndex < w.getNumExercise(); exerciseIndex++) {
+            panel.add(new JLabel("Exercise number: " + (exerciseIndex + 1)));
+            panel.add(new JLabel("---"));
             Exercise e = w.getExercise(exerciseIndex);
             RenderExerciseComponent renderExerciseComponent = new RenderExerciseComponent(e);
             panel.add(renderExerciseComponent.getPanel());
+            panel.add(new JLabel("\n"));
         }
     }
 

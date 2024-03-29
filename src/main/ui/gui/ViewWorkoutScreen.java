@@ -1,5 +1,6 @@
 package ui.gui;
 
+import model.Exercise;
 import model.Tracker;
 import model.Workout;
 
@@ -9,19 +10,27 @@ public class ViewWorkoutScreen {
     private final int HEIGHT = 600;
     private final int WIDTH = 400;
     static JPanel panel;
+    static JScrollPane scrollPane;
+    static RenderTrackerComponent renderTrackerComponent;
 
-    public ViewWorkoutScreen(Tracker t) {
+    public ViewWorkoutScreen(JButton backButton, Tracker t) {
         panel = new JPanel();
-        panel.setSize(WIDTH, HEIGHT);
+        scrollPane = new JScrollPane();
+        renderTrackerComponent = new RenderTrackerComponent(t);
 
-        RenderTrackerComponent renderTrackerComponent = new RenderTrackerComponent(t);
-
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.add(renderTrackerComponent.getPanel());
-        panel.add(scrollPane);
+//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(backButton);
+        panel.add(renderTrackerComponent.getPanel());
+//        panel.add(scrollPane);
     }
 
     public static JPanel getPanel() {
         return panel;
+    }
+
+    public void update(Tracker t) {
+        panel.remove(renderTrackerComponent.getPanel());
+        renderTrackerComponent = new RenderTrackerComponent(t);
+        panel.add(renderTrackerComponent.getPanel());
     }
 }

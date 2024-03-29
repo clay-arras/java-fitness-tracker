@@ -33,6 +33,18 @@ public class TrackerHandler {
     }
 
     /*
+    MODIFIES: this
+    EFFECTS: Constructs a tracker handler
+     */
+    public TrackerHandler(Tracker t) {
+        tracker = t;
+        handler = new WorkoutHandler();
+        scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+    }
+
+    /*
     EFFECTS: displays workouts
      */
     public void displayWorkouts() {

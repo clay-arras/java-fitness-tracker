@@ -10,7 +10,7 @@ public class RenderTrackerComponent {
 
     public RenderTrackerComponent(Tracker t) {
         panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         for (int workoutIndex = 0; workoutIndex < t.getNumWorkouts(); workoutIndex++) {
             Workout w = t.getWorkout(workoutIndex);
