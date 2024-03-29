@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /*
 Main component for the GUI application
@@ -39,6 +41,7 @@ public class GUIApplication extends JFrame {
     JButton removeWorkoutButton;
     JButton editWorkoutButton;
     JButton addWorkoutButton;
+    JButton viewMetricsButton;
     JButton backButton;
 
     CardLayout layout;
@@ -69,8 +72,9 @@ public class GUIApplication extends JFrame {
         editWorkoutButton = initializeEditWorkoutButton();
         addWorkoutButton = initializeAddWorkoutButton();
         backButton = initializeBackButton();
+        viewMetricsButton = initializeViewMetricsButton();
 
-        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton, editWorkoutButton, addWorkoutButton);
+        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton, editWorkoutButton, addWorkoutButton, viewMetricsButton);
         viewWorkoutScreen = new ViewWorkoutScreen(initializeBackButton(), tracker);
         removeWorkoutScreen = new RemoveWorkoutScreen(initializeBackButton(), tracker, this);
         editWorkoutScreen = new EditWorkoutScreen(initializeBackButton(), tracker, this);
@@ -183,6 +187,36 @@ public class GUIApplication extends JFrame {
                 System.out.println("Changing to add workout screen");
                 layout.show(panel, ADD_WORKOUT_SCREEN);
                 currentScreen = ADD_WORKOUT_SCREEN;
+            }
+        });
+        return addWorkoutButton;
+    }
+
+    private JButton initializeViewMetricsButton() {
+        JButton addWorkoutButton = new JButton("View metrics");
+        addWorkoutButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                String imagePath = "https://pngimg.com/d/dumbbell_PNG16384.png";
+                URL imageURL = null;
+                try {
+                    imageURL = new URL(imagePath);
+                } catch (MalformedURLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                ImageIcon image = new ImageIcon(imageURL);
+
+                Object[] possibilities = {"ham", "spam", "yam"};
+                String s = (String)JOptionPane.showInputDialog(
+                        frame,
+                        "Complete the sentence:\n"
+                                + "\"Green eggs and...\"");
+
+//                System.out.println(s);
+                JOptionPane.showMessageDialog(frame,
+                        "Highest volume: " + tracker.findMaxVolume(s)
+                               + "\nHighest 1RM: " + tracker.findMax1RM(s),
+                        "Metrics",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         return addWorkoutButton;

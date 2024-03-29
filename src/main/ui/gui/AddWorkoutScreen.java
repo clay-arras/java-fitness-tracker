@@ -9,6 +9,8 @@ import ui.tui.WorkoutHandler;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class AddWorkoutScreen {
     private final int HEIGHT = 600;
@@ -18,10 +20,11 @@ public class AddWorkoutScreen {
     static Workout inputWorkout;
     static InputWorkoutComponent inputWorkoutComponent;
     static Tracker tracker;
-
+    private GUIApplication guiApplication;
     static JButton submitButton;
 
     public AddWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
+        this.guiApplication = guiApplication;
         panel = new JPanel();
         scrollPane = new JScrollPane();
         inputWorkoutComponent = new InputWorkoutComponent(this);
@@ -54,8 +57,17 @@ public class AddWorkoutScreen {
                 inputWorkout = inputWorkoutComponent.getInputWorkout();
                 tracker.addWorkout(inputWorkout);
                 System.out.println("Workout submitted");
-//                WorkoutHandler workoutHandler = new WorkoutHandler();
-//                workoutHandler.displayWorkout(inputWorkout);
+                String imagePath = "https://pngimg.com/d/dumbbell_PNG16384.png";
+                URL imageURL = null;
+                try {
+                    imageURL = new URL(imagePath);
+                } catch (MalformedURLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                ImageIcon image = new ImageIcon(imageURL);
+                JOptionPane.showMessageDialog(panel, "\nHighest 1RM: ", "Metrics", JOptionPane.INFORMATION_MESSAGE, image);
+
+                guiApplication.updateAllScreens();
                 try {
                     TrackerHandler trackerHandler = new TrackerHandler(tracker);
                     trackerHandler.displayWorkouts();
