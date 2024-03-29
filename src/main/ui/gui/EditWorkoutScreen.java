@@ -20,7 +20,6 @@ public class EditWorkoutScreen {
     public EditWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
         panel = new JPanel();
         renderTrackerComponent = new RenderTrackerComponent(t);
-
         panel.add(backButton);
         panel.add(renderTrackerComponent.getPanel());
     }
