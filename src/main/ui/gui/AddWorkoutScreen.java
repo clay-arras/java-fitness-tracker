@@ -3,6 +3,8 @@ package ui.gui;
 import model.Exercise;
 import model.Tracker;
 import model.Workout;
+import ui.tui.TrackerHandler;
+import ui.tui.WorkoutHandler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -52,6 +54,14 @@ public class AddWorkoutScreen {
                 inputWorkout = inputWorkoutComponent.getInputWorkout();
                 tracker.addWorkout(inputWorkout);
                 System.out.println("Workout submitted");
+//                WorkoutHandler workoutHandler = new WorkoutHandler();
+//                workoutHandler.displayWorkout(inputWorkout);
+                try {
+                    TrackerHandler trackerHandler = new TrackerHandler(tracker);
+                    trackerHandler.displayWorkouts();
+                } catch (Exception exception) {
+                    System.out.println("Tracker is null");
+                }
             }
         });
         return submitButton;

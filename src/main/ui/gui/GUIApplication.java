@@ -98,8 +98,8 @@ public class GUIApplication extends JFrame {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                TrackerHandler trackerHandler = new TrackerHandler(tracker);
-                trackerHandler.displayWorkouts();
+//                TrackerHandler trackerHandler = new TrackerHandler(tracker);
+//                trackerHandler.displayWorkouts();
                 System.out.println("Back button pressed");
                 layout.show(panel, MENU_SCREEN);
             }
