@@ -13,7 +13,7 @@ public class EditWorkoutScreen {
     static JScrollPane scrollPane;
     static RenderTrackerComponent renderTrackerComponent;
 
-    public EditWorkoutScreen(JButton backButton, Tracker t) {
+    public EditWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
         panel = new JPanel();
         scrollPane = new JScrollPane();
         renderTrackerComponent = new RenderTrackerComponent(t);

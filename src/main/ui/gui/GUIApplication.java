@@ -38,6 +38,7 @@ public class GUIApplication extends JFrame {
     JButton viewWorkoutButton;
     JButton removeWorkoutButton;
     JButton editWorkoutButton;
+    JButton addWorkoutButton;
     JButton backButton;
 
     CardLayout layout;
@@ -66,13 +67,14 @@ public class GUIApplication extends JFrame {
         viewWorkoutButton = initializeViewWorkoutButton();
         removeWorkoutButton = initializeRemoveWorkoutButton();
         editWorkoutButton = initializeEditWorkoutButton();
+        addWorkoutButton = initializeAddWorkoutButton();
         backButton = initializeBackButton();
 
-        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton, editWorkoutButton);
+        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton, editWorkoutButton, addWorkoutButton);
         viewWorkoutScreen = new ViewWorkoutScreen(initializeBackButton(), tracker);
         removeWorkoutScreen = new RemoveWorkoutScreen(initializeBackButton(), tracker, this);
-        editWorkoutScreen = new EditWorkoutScreen(initializeBackButton(), tracker);
-        addWorkoutScreen = new AddWorkoutScreen(initializeBackButton(), tracker);
+        editWorkoutScreen = new EditWorkoutScreen(initializeBackButton(), tracker, this);
+        addWorkoutScreen = new AddWorkoutScreen(initializeBackButton(), tracker, this);
 
         panel.setLayout(layout);
         panel.add(menuScreen.getPanel(), MENU_SCREEN);
@@ -190,5 +192,9 @@ public class GUIApplication extends JFrame {
         System.out.println("Updating screens");
         viewWorkoutScreen.update(tracker);
         removeWorkoutScreen.update(tracker);
+        editWorkoutScreen.update(tracker);
+        addWorkoutScreen.update();
+        frame.revalidate();
+        frame.repaint();
     }
 }

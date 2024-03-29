@@ -27,7 +27,7 @@ public class MenuScreen extends JPanel {
     MODIFIES: this
     EFFECTS: constructor for making the panel
      */
-    public MenuScreen(JButton saveWorkoutButton, JButton loadWorkoutButton, JButton viewWorkoutButton, JButton removeWorkoutButton, JButton editWorkoutButton) {
+    public MenuScreen(JButton saveWorkoutButton, JButton loadWorkoutButton, JButton viewWorkoutButton, JButton removeWorkoutButton, JButton editWorkoutButton, JButton addWorkoutButton) {
         panel = new JPanel();
         panel.setSize(WIDTH, HEIGHT);
         TitleComponent titleComponent = null;
@@ -39,8 +39,6 @@ public class MenuScreen extends JPanel {
         panel.add(titleComponent.getLabel());
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-
-        JButton addWorkoutButton = new JButton("Add workouts");
 
         container.add(addWorkoutButton);
         container.add(removeWorkoutButton);

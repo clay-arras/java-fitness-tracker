@@ -16,10 +16,10 @@ public class InputExerciseComponent extends JPanel {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JTextField exerciseNameField = new JTextField();
-        JTextField exerciseSetsField = new JTextField();
-        JTextField exerciseRepsField = new JTextField();
-        JTextField exerciseWeightField = new JTextField();
+        JTextField exerciseNameField = new JTextField("Name");
+        JTextField exerciseSetsField = new JTextField("Sets");
+        JTextField exerciseRepsField = new JTextField("Reps");
+        JTextField exerciseWeightField = new JTextField("Weight");
 
         exerciseNameField.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -91,9 +91,15 @@ public class InputExerciseComponent extends JPanel {
         panel.add(exerciseSetsField);
         panel.add(exerciseRepsField);
         panel.add(exerciseWeightField);
+
+        e = inputExercise;
     }
 
     public Exercise getInputExercise() {
         return inputExercise;
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 }
