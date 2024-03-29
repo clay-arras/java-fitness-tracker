@@ -4,9 +4,16 @@ import model.Exercise;
 
 import javax.swing.*;
 
-public class RenderExerciseComponent extends JPanel {
-    static JPanel panel;
+/*
+This class renders a single exercise panel
+ */
+public class RenderExerciseComponent {
+    private JPanel panel;
 
+    /*
+    MODIFIES: this
+    EFFECTS: makes a render exercise given an exercise
+     */
     public RenderExerciseComponent(Exercise e) {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -17,7 +24,7 @@ public class RenderExerciseComponent extends JPanel {
         panel.add(new JLabel("Weight: " + e.getExerciseWeight() + "lbs"));
     }
 
-    public static JPanel getPanel() {
+    public JPanel getPanel() {
         return panel;
     }
 }

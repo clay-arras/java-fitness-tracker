@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/*
+This class handles inputting multiple exercises
+ */
 public class InputWorkoutComponent {
     private JPanel panel;
     private JPanel listOfExercisePanel;
@@ -18,61 +21,51 @@ public class InputWorkoutComponent {
     int numExercises;
     ArrayList<InputExerciseComponent> listOfExercise;
 
+    /*
+    MODIFIES: this
+    EFFECTS: creates inputting for a workout by using inputExerciseComponent
+     */
     public InputWorkoutComponent(AddWorkoutScreen addWorkoutScreen) {
         panel = new JPanel();
         listOfExercisePanel = new JPanel();
-//        InputExerciseComponent inputExerciseComponent = new InputExerciseComponent();
-//        panel.add(inputExerciseComponent.getPanel());
         listOfExercise = new ArrayList<>();
         inputWorkout = new Workout();
 
-        numExercises = 1;
-        for (int i = 0; i < numExercises; i++) {
-            InputExerciseComponent inputExerciseComponent = new InputExerciseComponent();
-            listOfExercise.add(inputExerciseComponent);
-            System.out.println(inputExerciseComponent);
-            listOfExercisePanel.add(inputExerciseComponent.getPanel());
-        }
-//        numExercisesTextField = new JTextField("0");
-//        numExercisesTextField.addActionListener(new ActionListener(){
-//            public void actionPerformed(ActionEvent e){
-//                String textFieldValue = numExercisesTextField.getText();
-//                numExercises = Integer.valueOf(textFieldValue);
-//                System.out.println("Number of exercises: " + numExercises);
-//                // update panel
-//                // for all input in panel, remove then re-add numExercises
-//                for (Component c : listOfExercisePanel.getComponents()) {
-//                    listOfExercisePanel.remove(c);
-//                }
-//                listOfExercise.clear();
-//                for (int i = 0; i < numExercises; i++) {
-//                    InputExerciseComponent inputExerciseComponent = new InputExerciseComponent();
-//                    listOfExercisePanel.add(inputExerciseComponent.getPanel());
-//                    listOfExercise.add(inputExerciseComponent);
-//                }
-//                addWorkoutScreen.update();
-//                panel.revalidate();
-//                panel.repaint();
-//            }
-//        });
-
-//        panel.add(numExercisesTextField);
+        numExercisesTextField = new JTextField("0");
+        numExercisesTextField.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                String textFieldValue = numExercisesTextField.getText();
+                numExercises = Integer.valueOf(textFieldValue);
+                for (Component c : listOfExercisePanel.getComponents()) {
+                    listOfExercisePanel.remove(c);
+                }
+                listOfExercise.clear();
+                for (int i = 0; i < numExercises; i++) {
+                    InputExerciseComponent inputExerciseComponent = new InputExerciseComponent();
+                    listOfExercisePanel.add(inputExerciseComponent.getPanel());
+                    listOfExercise.add(inputExerciseComponent);
+                }
+                addWorkoutScreen.update();
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
+        panel.add(numExercisesTextField);
         panel.add(listOfExercisePanel);
+    }
+
+    /*
+    EFFECTS: getter for inputWorkouts, constructs it from ArrayList
+     */
+    public Workout getInputWorkout() {
+        inputWorkout = new Workout();
+        for (InputExerciseComponent inputExerciseComponent : listOfExercise) {
+            inputWorkout.addExercise(inputExerciseComponent.getInputExercise());
+        }
+        return inputWorkout;
     }
 
     public JPanel getPanel() {
         return panel;
-    }
-
-    public Workout getInputWorkout() {
-        inputWorkout = new Workout();
-        for (InputExerciseComponent inputExerciseComponent : listOfExercise) {
-            System.out.println("INPUT WORKOUTS");
-            System.out.println(inputExerciseComponent.getInputExercise());
-            inputWorkout.addExercise(inputExerciseComponent.getInputExercise());
-//            ExerciseHandler exerciseHandler = new ExerciseHandler();
-//            exerciseHandler.displayExercise(inputExerciseComponent.getInputExercise());
-        }
-        return inputWorkout;
     }
 }

@@ -65,16 +65,26 @@ public class GUIApplication extends JFrame {
         layout = new CardLayout();
         panel = new JPanel();
 
-        saveWorkoutButton = initializeSaveWorkoutButton();
-        loadWorkoutButton = initializeLoadWorkoutButton();
-        viewWorkoutButton = initializeViewWorkoutButton();
-        removeWorkoutButton = initializeRemoveWorkoutButton();
-        editWorkoutButton = initializeEditWorkoutButton();
-        addWorkoutButton = initializeAddWorkoutButton();
-        backButton = initializeBackButton();
-        viewMetricsButton = initializeViewMetricsButton();
+        buttonInitialization();
+        addScreensToPanel();
 
-        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton, editWorkoutButton, addWorkoutButton, viewMetricsButton);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setResizable(false);
+    }
+
+    /*
+    MODIFIES: all screens && this.panel
+    EFFECTS: initializes all the screens and adds them to panel
+     */
+    private void addScreensToPanel() {
+//        screenInitialization();
+        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton,
+            editWorkoutButton, addWorkoutButton, viewMetricsButton);
         viewWorkoutScreen = new ViewWorkoutScreen(initializeBackButton(), tracker);
         removeWorkoutScreen = new RemoveWorkoutScreen(initializeBackButton(), tracker, this);
         editWorkoutScreen = new EditWorkoutScreen(initializeBackButton(), tracker, this);
@@ -87,30 +97,61 @@ public class GUIApplication extends JFrame {
         panel.add(editWorkoutScreen.getPanel(), EDIT_WORKOUT_SCREEN);
         panel.add(addWorkoutScreen.getPanel(), ADD_WORKOUT_SCREEN);
         currentScreen = MENU_SCREEN;
-
-        frame.add(panel);
-
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
     }
 
+//    /*
+//    MODIFIES: all screens
+//    EFFECTS: initializes all the screens
+//     */
+//    private void screenInitialization() {
+//        menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton, viewWorkoutButton, removeWorkoutButton,
+//                editWorkoutButton, addWorkoutButton, viewMetricsButton);
+//        viewWorkoutScreen = new ViewWorkoutScreen(initializeBackButton(), tracker);
+//        removeWorkoutScreen = new RemoveWorkoutScreen(initializeBackButton(), tracker, this);
+//        editWorkoutScreen = new EditWorkoutScreen(initializeBackButton(), tracker, this);
+//        addWorkoutScreen = new AddWorkoutScreen(initializeBackButton(), tracker, this);
+//    }
+
+    /*
+    MODIFIES: all buttons
+    EFFECTS: initializes all the buttons
+     */
+    private void buttonInitialization() {
+        saveWorkoutButton = initializeSaveWorkoutButton();
+        loadWorkoutButton = initializeLoadWorkoutButton();
+        viewWorkoutButton = initializeViewWorkoutButton();
+        removeWorkoutButton = initializeRemoveWorkoutButton();
+        editWorkoutButton = initializeEditWorkoutButton();
+        addWorkoutButton = initializeAddWorkoutButton();
+        backButton = initializeBackButton();
+        viewMetricsButton = initializeViewMetricsButton();
+    }
+
+    /*
+    EFFECTS: makes a new button for going back
+     */
     private JButton initializeBackButton() {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-//                TrackerHandler trackerHandler = new TrackerHandler(tracker);
-//                trackerHandler.displayWorkouts();
                 System.out.println("Back button pressed");
                 layout.show(panel, MENU_SCREEN);
+
+                updateAllScreens();
+//                addScreensToPanel();
+//                screenInitialization();
+
+//                System.out.println("TRACKER IN GUI");
+//                TrackerHandler trackerHandler = new TrackerHandler(tracker);
+//                trackerHandler.displayWorkouts();
             }
         });
         return backButton;
     }
 
+    /*
+    EFFECTS: makes a new button for saving workouts
+     */
     private JButton initializeSaveWorkoutButton() {
         JButton saveWorkoutButton = new JButton("Save workouts");
         saveWorkoutButton.addActionListener(new ActionListener(){
@@ -128,6 +169,9 @@ public class GUIApplication extends JFrame {
         return saveWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for loading workouts
+     */
     private JButton initializeLoadWorkoutButton() {
         JButton loadWorkoutButton = new JButton("Load workouts");
         loadWorkoutButton.addActionListener(new ActionListener(){
@@ -144,6 +188,9 @@ public class GUIApplication extends JFrame {
         return loadWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for viewing workouts
+     */
     private JButton initializeViewWorkoutButton() {
         JButton viewWorkoutButton = new JButton("View workouts");
         viewWorkoutButton.addActionListener(new ActionListener(){
@@ -156,6 +203,9 @@ public class GUIApplication extends JFrame {
         return viewWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for remove workouts
+     */
     private JButton initializeRemoveWorkoutButton() {
         JButton removeWorkoutButton = new JButton("Remove workouts");
         removeWorkoutButton.addActionListener(new ActionListener(){
@@ -168,6 +218,9 @@ public class GUIApplication extends JFrame {
         return removeWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for editing workouts
+     */
     private JButton initializeEditWorkoutButton() {
         JButton editWorkoutButton = new JButton("Edit workouts");
         editWorkoutButton.addActionListener(new ActionListener(){
@@ -180,6 +233,9 @@ public class GUIApplication extends JFrame {
         return editWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for adding workouts
+     */
     private JButton initializeAddWorkoutButton() {
         JButton addWorkoutButton = new JButton("Add workouts");
         addWorkoutButton.addActionListener(new ActionListener(){
@@ -192,26 +248,16 @@ public class GUIApplication extends JFrame {
         return addWorkoutButton;
     }
 
+    /*
+    EFFECTS: makes a new button for metrics
+     */
     private JButton initializeViewMetricsButton() {
         JButton addWorkoutButton = new JButton("View metrics");
         addWorkoutButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                String imagePath = "https://pngimg.com/d/dumbbell_PNG16384.png";
-                URL imageURL = null;
-                try {
-                    imageURL = new URL(imagePath);
-                } catch (MalformedURLException ex) {
-                    throw new RuntimeException(ex);
-                }
-                ImageIcon image = new ImageIcon(imageURL);
+                ImageIcon image = new ImageIcon("assets/image.png");
+                String s = (String)JOptionPane.showInputDialog(frame, "Which exercise? ");
 
-                Object[] possibilities = {"ham", "spam", "yam"};
-                String s = (String)JOptionPane.showInputDialog(
-                        frame,
-                        "Complete the sentence:\n"
-                                + "\"Green eggs and...\"");
-
-//                System.out.println(s);
                 JOptionPane.showMessageDialog(frame,
                         "Highest volume: " + tracker.findMaxVolume(s)
                                + "\nHighest 1RM: " + tracker.findMax1RM(s),
@@ -222,12 +268,15 @@ public class GUIApplication extends JFrame {
         return addWorkoutButton;
     }
 
+    /*
+    EFFECTS: updates all the screens in the application
+     */
     protected void updateAllScreens() {
         System.out.println("Updating screens");
         viewWorkoutScreen.update(tracker);
         removeWorkoutScreen.update(tracker);
         editWorkoutScreen.update(tracker);
-        addWorkoutScreen.update();
+        addWorkoutScreen.update(tracker);
         frame.revalidate();
         frame.repaint();
     }

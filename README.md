@@ -55,3 +55,20 @@ As a user, I want to be able to calculate metrics
 As a user, I want to be able to save workout data (if I so choose)
 
 As a user, I want to be able to load previous workout data (if I so choose)
+
+
+## Instructions for Grader
+How to generate the first of the two required actions that are related to the required user story "add multiple Xs to a Y" (e.g., click the button labelled "Add an X", or select the menu item labelled "Add an X", or type <ctrl>+N on the keyboard to add an X,...)
+- In main menu, press `Add workouts`. In the text box, enter how many exercises and hit enter. Then replace the `NAME`, `SETS`, `REPS`, and `WEIGHT` fields. Click `Save Workout` and `BACK` once you are done.
+ 
+How to generate the second of the two required actions
+- In main menu, press `View metrics`. Enter the name of the exercise you want to see metrics of... i.e. `Dumbbell curls`. A popup will tell you the metrics
+
+Where to find the visual component that was added to your project (e.g., background image, image added to button)
+- In main menu, there is an image of a dumbbell. Additionally, when you add a workout, you also see an image
+
+How does the user save the state of the application to file
+- In main menu, press `Save workout`
+
+How does the user load the state of the application from file
+- In main menu, press `Load workouts`
