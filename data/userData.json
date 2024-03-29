@@ -1,22 +1,22 @@
 {"listOfWorkout": [
-    {"listOfExercise": [
-        {
-            "exerciseName": "Leg Curls",
-            "exerciseWeight": 11,
-            "exerciseSets": 4,
-            "exerciseReps": 35
-        },
-        {
-            "exerciseName": "Hammer Curls",
-            "exerciseWeight": 112,
-            "exerciseSets": 3,
-            "exerciseReps": 30
-        }
-    ]},
-    {"listOfExercise": [{
-        "exerciseName": "Push ups",
-        "exerciseWeight": 120,
-        "exerciseSets": 2,
-        "exerciseReps": 10
-    }]}
+  {"listOfExercise": [
+    {
+      "exerciseName": "Leg Curls",
+      "exerciseWeight": 11,
+      "exerciseSets": 4,
+      "exerciseReps": 35
+    },
+    {
+      "exerciseName": "Hammer Curls",
+      "exerciseWeight": 112,
+      "exerciseSets": 3,
+      "exerciseReps": 30
+    }
+  ]},
+  {"listOfExercise": [{
+    "exerciseName": "Push ups",
+    "exerciseWeight": 120,
+    "exerciseSets": 2,
+    "exerciseReps": 10
+  }]}
 ]}
