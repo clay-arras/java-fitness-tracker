@@ -5,6 +5,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class GUIApplication extends JFrame {
     protected static final String JSON_STORE = "./data/userData.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    JComponent currentScreen;
 
     /*
     MODIFIES: this
@@ -32,7 +34,6 @@ public class GUIApplication extends JFrame {
         tracker = new Tracker();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
         frame = new JFrame();
 
         JButton saveWorkoutButton = new JButton("Save workouts");
@@ -61,8 +62,27 @@ public class GUIApplication extends JFrame {
             }
         });
 
+
         MenuScreen menuScreen = new MenuScreen(saveWorkoutButton, loadWorkoutButton);
         frame.add(menuScreen.getPanel());
+        currentScreen = menuScreen.getPanel();
+
+//        ViewWorkoutScreen viewWorkoutScreen = new ViewWorkoutScreen();
+
+        JButton backButton = new JButton("GO BACK");
+        backButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                frame.remove(currentScreen);
+                frame.add(menuScreen.getPanel());
+            }
+        });
+//        JButton viewWorkoutButton = new JButton("View workouts");
+//        viewWorkoutButton.addActionListener(new ActionListener(){
+//            public void actionPerformed(ActionEvent e){
+//                frame.remove(currentScreen);
+//                frame.add(viewWorkoutScreen.getPanel());
+//            }
+//        });
 
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
