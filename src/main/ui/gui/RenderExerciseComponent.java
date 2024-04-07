@@ -8,7 +8,7 @@ import javax.swing.*;
 This class renders a single exercise panel
  */
 public class RenderExerciseComponent {
-    private JPanel panel;
+    private final JPanel panel;
 
     /*
     MODIFIES: this

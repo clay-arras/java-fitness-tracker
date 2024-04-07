@@ -1,15 +1,16 @@
 package ui.gui;
 
 import model.Tracker;
+
 import javax.swing.*;
 
 /*
 Screen for viewing workouts
  */
 public class ViewWorkoutScreen {
-    private final int HEIGHT = 600;
-    private final int WIDTH = 400;
-    private JPanel panel;
+    private final int height = 600;
+    private final int width = 400;
+    private final JPanel panel;
     private RenderTrackerComponent renderTrackerComponent;
 
     /*

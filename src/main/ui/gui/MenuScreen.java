@@ -6,15 +6,18 @@ import javax.swing.*;
 Container for the titleComponent
  */
 public class MenuScreen extends JPanel {
-    private final int HEIGHT = 600;
-    private final int WIDTH = 400;
     static JPanel panel;
+    private final int height = 600;
+    private final int width = 400;
 
     /*
     MODIFIES: this
     EFFECTS: constructor for making the panel
      */
-    public MenuScreen(JButton saveWorkoutButton, JButton loadWorkoutButton, JButton viewWorkoutButton, JButton removeWorkoutButton, JButton editWorkoutButton, JButton addWorkoutButton, JButton viewMetricsButton) {
+    public MenuScreen(JButton saveWorkoutButton, JButton loadWorkoutButton,
+                      JButton viewWorkoutButton, JButton removeWorkoutButton,
+                      JButton editWorkoutButton, JButton addWorkoutButton,
+                      JButton viewMetricsButton) {
         panel = new JPanel();
         panel.setSize(WIDTH, HEIGHT);
         TitleComponent titleComponent = new TitleComponent();
@@ -24,7 +27,6 @@ public class MenuScreen extends JPanel {
 
         container.add(addWorkoutButton);
         container.add(removeWorkoutButton);
-//        container.add(editWorkoutButton);
         container.add(viewWorkoutButton);
         container.add(viewMetricsButton);
         container.add(saveWorkoutButton);

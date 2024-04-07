@@ -9,14 +9,14 @@ import java.util.Set;
 /*
 Main hub for the application, which runs the main process loop
  */
-public class TUIApplication {
+public class TerminalApplication {
     private boolean isDone;
     private final TrackerHandler handler;
 
     /*
     EFFECTS: initializes the application
      */
-    public TUIApplication() {
+    public TerminalApplication() {
         isDone = false;
         handler = new TrackerHandler();
     }

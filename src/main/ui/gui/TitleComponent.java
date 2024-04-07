@@ -6,7 +6,7 @@ import javax.swing.*;
 Title component for GUI application, also fulfills the image part
  */
 public class TitleComponent {
-    private JLabel label;
+    private final JLabel label;
 
     /*
     MODIFIES: this
@@ -14,7 +14,7 @@ public class TitleComponent {
      */
     public TitleComponent() {
         ImageIcon image = new ImageIcon("assets/image.png");
-        assert(image != null);
+        assert (image != null);
         label = new JLabel();
         label.setText("Workout Tracker APP");
         label.setIcon(image);

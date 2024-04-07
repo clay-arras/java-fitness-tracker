@@ -1,9 +1,6 @@
 package ui.gui;
 
-import model.Exercise;
 import model.Tracker;
-import model.Workout;
-import ui.tui.ExerciseHandler;
 import ui.tui.TrackerHandler;
 
 import javax.swing.*;
@@ -14,26 +11,26 @@ import java.awt.event.ActionListener;
 This class handles removing exercises
  */
 public class RemoveWorkoutScreen {
-    private final int HEIGHT = 600;
-    private final int WIDTH = 400;
-    private JPanel panel;
-    private JScrollPane scrollPane;
+    private final int height = 600;
+    private final int width = 400;
+    private final JPanel panel;
+    private final JScrollPane scrollPane;
+    private final JTextField removeWorkoutTextField;
     private RenderTrackerComponent renderTrackerComponent;
     private Tracker tracker;
     private JPanel renderTrackerPanel;
-    private JTextField removeWorkoutTextField;
 
     /*
     MODIFIES: this
     EFFECTS: initializes remove workout screen
      */
-    public RemoveWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
+    public RemoveWorkoutScreen(JButton backButton, Tracker t, GraphicApplication graphicApplication) {
         panel = new JPanel();
         scrollPane = new JScrollPane();
         tracker = t;
         renderTrackerComponent = new RenderTrackerComponent(tracker);
         renderTrackerPanel = renderTrackerComponent.getPanel();
-        removeWorkoutTextField = getRemoveWorkoutTextField(t, guiApplication);
+        removeWorkoutTextField = getRemoveWorkoutTextField(t, graphicApplication);
 
         panel.add(backButton);
         panel.add(renderTrackerPanel);
@@ -44,16 +41,16 @@ public class RemoveWorkoutScreen {
     MODIFIES: this.removeWorkoutTextField
     EFFECTS: constructs removeWorkoutTextField
      */
-    private JTextField getRemoveWorkoutTextField(Tracker t, GUIApplication guiApplication) {
+    private JTextField getRemoveWorkoutTextField(Tracker t, GraphicApplication graphicApplication) {
         JTextField removeWorkoutTextField = new JTextField("Index");
-        removeWorkoutTextField.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        removeWorkoutTextField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 try {
                     TrackerHandler trackerHandler = new TrackerHandler(t);
                     trackerHandler.displayWorkouts();
                     int textFieldNumber = Integer.valueOf(removeWorkoutTextField.getText());
                     tracker.removeWorkout(textFieldNumber);
-                    guiApplication.updateAllScreens();
+                    graphicApplication.updateAllScreens();
                 } catch (IndexOutOfBoundsException exception) {
                     System.out.println("Out of bounds");
                 }

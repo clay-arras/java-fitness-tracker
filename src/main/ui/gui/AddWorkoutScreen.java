@@ -1,6 +1,5 @@
 package ui.gui;
 
-import model.Exercise;
 import model.Tracker;
 import model.Workout;
 
@@ -12,21 +11,21 @@ import java.awt.event.ActionListener;
 Main screen for adding workouts
  */
 public class AddWorkoutScreen {
-    private final int HEIGHT = 600;
-    private final int WIDTH = 400;
-    private JPanel panel;
+    private final int height = 600;
+    private final int width = 400;
+    private final JPanel panel;
+    private final InputWorkoutComponent inputWorkoutComponent;
+    private final GraphicApplication graphicApplication;
+    private final JButton submitButton;
     private Workout inputWorkout;
-    private InputWorkoutComponent inputWorkoutComponent;
     private Tracker tracker;
-    private GUIApplication guiApplication;
-    private JButton submitButton;
 
     /*
     MODIFIES: this
     EFFECTS: constructs the adding screen
      */
-    public AddWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
-        this.guiApplication = guiApplication;
+    public AddWorkoutScreen(JButton backButton, Tracker t, GraphicApplication graphicApplication) {
+        this.graphicApplication = graphicApplication;
         inputWorkoutComponent = new InputWorkoutComponent(this);
         panel = new JPanel();
 
@@ -67,17 +66,19 @@ public class AddWorkoutScreen {
      */
     public JButton initializeSubmitButton() {
         JButton submitButton = new JButton("Add workout");
-        submitButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 inputWorkout = inputWorkoutComponent.getInputWorkout();
                 tracker.addWorkout(inputWorkout);
                 ImageIcon image = new ImageIcon("assets/image.png");
-                JOptionPane.showMessageDialog(panel, "Workout added!", "Success", JOptionPane.INFORMATION_MESSAGE, image);
-                guiApplication.updateAllScreens();
-
-//                System.out.println("TRACKER IN WORKOUT SCREEN");
-//                TrackerHandler trackerHandler = new TrackerHandler(tracker);
-//                trackerHandler.displayWorkouts();
+                JOptionPane.showMessageDialog(
+                        panel,
+                        "Workout added!",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE,
+                        image
+                );
+                graphicApplication.updateAllScreens();
             }
         });
         return submitButton;

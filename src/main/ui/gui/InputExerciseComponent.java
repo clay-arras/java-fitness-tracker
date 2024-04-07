@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 This class handles inputting a single exercise
  */
 public class InputExerciseComponent {
-    private JPanel panel;
+    private final JPanel panel;
     Exercise inputExercise;
     JTextField exerciseNameField;
     JTextField exerciseSetsField;
@@ -39,27 +39,55 @@ public class InputExerciseComponent {
     EFFECTS: initializes all text fields and their handlers
      */
     private void initializeTextFields() {
+        initializeExerciseNameField();
+        initializeExerciseRepsField();
+        initializeExerciseSetsField();
+        initializeExerciseWeightField();
+    }
+
+    /*
+    EFFECTS: initializes exerciseNameField
+     */
+    private void initializeExerciseNameField() {
         exerciseNameField = new JTextField("Name");
-        exerciseSetsField = new JTextField("Sets");
-        exerciseRepsField = new JTextField("Reps");
-        exerciseWeightField = new JTextField("Weight");
-        exerciseNameField.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        exerciseNameField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 inputExercise.setExerciseName(exerciseNameField.getText());
             }
         });
-        exerciseSetsField.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+    }
+
+    /*
+    EFFECTS: initializes exerciseSetsField
+     */
+    private void initializeExerciseSetsField() {
+        exerciseSetsField = new JTextField("Sets");
+        exerciseSetsField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 inputExercise.setExerciseSets(Integer.valueOf(exerciseSetsField.getText()));
             }
         });
-        exerciseRepsField.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+    }
+
+    /*
+    EFFECTS: initializes exerciseRepsField
+     */
+    private void initializeExerciseRepsField() {
+        exerciseRepsField = new JTextField("Reps");
+        exerciseRepsField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 inputExercise.setExerciseReps(Integer.valueOf(exerciseRepsField.getText()));
             }
         });
-        exerciseWeightField.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+    }
+
+    /*
+    EFFECTS: initializes exerciseWeightField
+     */
+    private void initializeExerciseWeightField() {
+        exerciseWeightField = new JTextField("Weight");
+        exerciseWeightField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 inputExercise.setExerciseWeight(Integer.valueOf(exerciseWeightField.getText()));
             }
         });

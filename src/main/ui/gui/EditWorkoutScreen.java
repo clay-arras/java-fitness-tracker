@@ -8,16 +8,16 @@ import javax.swing.*;
 Main screen for the edit workout screen
  */
 public class EditWorkoutScreen {
-    private final int HEIGHT = 600;
-    private final int WIDTH = 400;
-    private JPanel panel;
+    private final int height = 600;
+    private final int width = 400;
+    private final JPanel panel;
     private RenderTrackerComponent renderTrackerComponent;
 
     /*
     MODIFIES: this
     EFFECTS: constructs the screen and adds components
      */
-    public EditWorkoutScreen(JButton backButton, Tracker t, GUIApplication guiApplication) {
+    public EditWorkoutScreen(JButton backButton, Tracker t, GraphicApplication graphicApplication) {
         panel = new JPanel();
         renderTrackerComponent = new RenderTrackerComponent(t);
         panel.add(backButton);
