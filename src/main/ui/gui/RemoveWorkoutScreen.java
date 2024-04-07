@@ -46,13 +46,13 @@ public class RemoveWorkoutScreen {
         removeWorkoutTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    TrackerHandler trackerHandler = new TrackerHandler(t);
-                    trackerHandler.displayWorkouts();
+//                    TrackerHandler trackerHandler = new TrackerHandler(t);
+//                    trackerHandler.displayWorkouts();
                     int textFieldNumber = Integer.valueOf(removeWorkoutTextField.getText());
                     tracker.removeWorkout(textFieldNumber);
                     graphicApplication.updateAllScreens();
                 } catch (IndexOutOfBoundsException exception) {
-                    System.out.println("Out of bounds");
+//                    System.out.println("Out of bounds");
                 }
             }
         });

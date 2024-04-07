@@ -1,13 +1,14 @@
 package ui.gui;
 
+import model.EventLog;
+import model.Event;
 import model.Tracker;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ public class GraphicApplication extends JFrame {
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
     protected Tracker tracker;
+    protected EventLog logger;
     String currentScreen;
     MenuScreen menuScreen;
     AddWorkoutScreen addWorkoutScreen;
@@ -55,9 +57,26 @@ public class GraphicApplication extends JFrame {
         frame = new JFrame();
         layout = new CardLayout();
         panel = new JPanel();
+        logger = EventLog.getInstance();
 
         buttonInitialization();
         addScreensToPanel();
+        screenInitialization();
+    }
+
+    /*
+    MODIFIES: this.frame
+    EFFECTS: initializes the main screen
+     */
+    private void screenInitialization() {
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : logger) {
+                    System.out.println(event.toString());
+                }
+            }
+        });
 
         frame.add(panel);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -124,9 +143,7 @@ public class GraphicApplication extends JFrame {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Back button pressed");
                 layout.show(panel, MENU_SCREEN);
-
                 updateAllScreens();
             }
         });
@@ -144,9 +161,9 @@ public class GraphicApplication extends JFrame {
                     jsonWriter.open();
                     jsonWriter.write(tracker);
                     jsonWriter.close();
-                    System.out.println("Saved file to " + JSON_STORE);
+//                    System.out.println("Saved file to " + JSON_STORE);
                 } catch (FileNotFoundException exception) {
-                    System.out.println("Unable to write to file: " + JSON_STORE);
+//                    System.out.println("Unable to write to file: " + JSON_STORE);
                 }
             }
         });
@@ -162,10 +179,10 @@ public class GraphicApplication extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     tracker = jsonReader.read();
-                    System.out.println("Loaded file from " + JSON_STORE);
+//                    System.out.println("Loaded file from " + JSON_STORE);
                     updateAllScreens();
                 } catch (IOException exception) {
-                    System.out.println("Unable to read from file: " + JSON_STORE);
+//                    System.out.println("Unable to read from file: " + JSON_STORE);
                 }
             }
         });
@@ -179,7 +196,7 @@ public class GraphicApplication extends JFrame {
         JButton viewWorkoutButton = new JButton("View workouts");
         viewWorkoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Changing to view workout screen");
+//                System.out.println("Changing to view workout screen");
                 layout.show(panel, VIEW_WORKOUT_SCREEN);
                 currentScreen = VIEW_WORKOUT_SCREEN;
             }
@@ -194,7 +211,7 @@ public class GraphicApplication extends JFrame {
         JButton removeWorkoutButton = new JButton("Remove workouts");
         removeWorkoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Changing to remove workout screen");
+//                System.out.println("Changing to remove workout screen");
                 layout.show(panel, REMOVE_WORKOUT_SCREEN);
                 currentScreen = REMOVE_WORKOUT_SCREEN;
             }
@@ -209,7 +226,7 @@ public class GraphicApplication extends JFrame {
         JButton editWorkoutButton = new JButton("Edit workouts");
         editWorkoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Changing to edit workout screen");
+//                System.out.println("Changing to edit workout screen");
                 layout.show(panel, EDIT_WORKOUT_SCREEN);
                 currentScreen = EDIT_WORKOUT_SCREEN;
             }
@@ -224,7 +241,7 @@ public class GraphicApplication extends JFrame {
         JButton addWorkoutButton = new JButton("Add workouts");
         addWorkoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Changing to add workout screen");
+//                System.out.println("Changing to add workout screen");
                 layout.show(panel, ADD_WORKOUT_SCREEN);
                 currentScreen = ADD_WORKOUT_SCREEN;
             }
@@ -256,7 +273,7 @@ public class GraphicApplication extends JFrame {
     EFFECTS: updates all the screens in the application
      */
     protected void updateAllScreens() {
-        System.out.println("Updating screens");
+//        System.out.println("Updating screens");
         viewWorkoutScreen.update(tracker);
         removeWorkoutScreen.update(tracker);
         editWorkoutScreen.update(tracker);

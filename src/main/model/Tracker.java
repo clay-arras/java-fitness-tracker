@@ -13,6 +13,7 @@ A basic tracker for multiple workouts, that can also find certain relevant metri
  */
 public class Tracker implements Metrics, Writable {
     private final ArrayList<Workout> listOfWorkout;
+    private final EventLog logger;
 
     /*
     MODIFIES: this
@@ -20,6 +21,8 @@ public class Tracker implements Metrics, Writable {
      */
     public Tracker() {
         listOfWorkout = new ArrayList<>();
+        logger = EventLog.getInstance();
+        logger.logEvent(new Event("Initialized tracker"));
     }
 
     /*
@@ -28,6 +31,7 @@ public class Tracker implements Metrics, Writable {
      */
     public void addWorkout(Workout newWorkout) {
         listOfWorkout.add(newWorkout);
+        logger.logEvent(new Event("Added workout to tracker"));
     }
 
     /*
@@ -37,6 +41,7 @@ public class Tracker implements Metrics, Writable {
     */
     public void removeWorkout(int index) {
         listOfWorkout.remove(index);
+        logger.logEvent(new Event("Removed workout at index " + index + " from tracker"));
     }
 
     /*
@@ -46,6 +51,7 @@ public class Tracker implements Metrics, Writable {
     */
     public void editWorkout(int index, Workout newWorkout) {
         listOfWorkout.set(index, newWorkout);
+        logger.logEvent(new Event("Edited workout at index " + index + " in tracker"));
     }
 
     /*
@@ -71,6 +77,7 @@ public class Tracker implements Metrics, Writable {
         for (Workout workout : listOfWorkout) {
             maxVolume = max(maxVolume, workout.findMaxVolume(exerciseName));
         }
+        logger.logEvent(new Event("Fetched " + exerciseName + "'s volume from tracker with value of " + maxVolume));
         return maxVolume;
     }
 
@@ -82,6 +89,7 @@ public class Tracker implements Metrics, Writable {
         for (Workout workout : listOfWorkout) {
             max1RM = max(max1RM, workout.findMax1RM(exerciseName));
         }
+        logger.logEvent(new Event("Fetched " + exerciseName + "'s 1RM from tracker with value of " + max1RM));
         return max1RM;
     }
 
