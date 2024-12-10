@@ -74,17 +74,17 @@ How does the user load the state of the application from file
 - In main menu, press `Load workouts`
 
 ## Phase 4: Task 2
-Sun Apr 07 15:20:37 PDT 2024
-Initialized tracker
-Sun Apr 07 15:20:37 PDT 2024
-Added workout to tracker
-Sun Apr 07 15:20:37 PDT 2024
-Added workout to tracker
-Sun Apr 07 15:20:50 PDT 2024
-Added workout to tracker
-Sun Apr 07 15:20:59 PDT 2024
-Removed workout at index 1 from tracker
-Sun Apr 07 15:21:15 PDT 2024
-Fetched Leg Curls's volume from tracker with value of 1540
-Sun Apr 07 15:21:15 PDT 2024
-Fetched Leg Curls's 1RM from tracker with value of 25.384615384615383
+Sun Apr 07 15:20:37 PDT 2024 \
+Initialized tracker \
+Sun Apr 07 15:20:37 PDT 2024 \
+Added workout to tracker \
+Sun Apr 07 15:20:37 PDT 2024 \
+Added workout to tracker \
+Sun Apr 07 15:20:50 PDT 2024 \
+Added workout to tracker \
+Sun Apr 07 15:20:59 PDT 2024 \
+Removed workout at index 1 from tracker \
+Sun Apr 07 15:21:15 PDT 2024 \
+Fetched Leg Curls's volume from tracker with value of 1540 \
+Sun Apr 07 15:21:15 PDT 2024 \
+Fetched Leg Curls's 1RM from tracker with value of 25.384615384615383 \
